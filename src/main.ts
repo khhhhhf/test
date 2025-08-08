@@ -4,10 +4,10 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
+
 import router from './router'
 
 const app = createApp(App)
-console.log(1)
 console.log(asd)
 
 app.use(createPinia())

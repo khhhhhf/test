@@ -53,7 +53,7 @@ export default defineConfigWithVueTs(
         }
       ],
       'vue/no-setup-props-destructure': ['off'],
-      'no-undef': 'off' // 保持 no-undef 规则为警告级别
+      'no-undef': 'warn' // 保持 no-undef 规则为警告级别
     }
   }
 )

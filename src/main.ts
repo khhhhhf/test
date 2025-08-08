@@ -9,6 +9,7 @@ import router from './router'
 
 const app = createApp(App)
 console.log(asd)
+conslole.log(aa)
 
 app.use(createPinia())
 app.use(router)

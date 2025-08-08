@@ -8,8 +8,7 @@ import App from './App.vue'
 import router from './router'
 
 const app = createApp(App)
-/* console.log(asd)
-console.log(aa) */
+console.log(asd)
 
 app.use(createPinia())
 app.use(router)

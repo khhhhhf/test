@@ -27,7 +27,8 @@ export default defineConfigWithVueTs(
     languageOptions: {
       globals: {
         ...globals.browser, // 导入浏览器全局变量
-        ...globals.node // 同时导入 Node.js 全局变量
+        ...globals.node, // 同时导入 Node.js 全局变量
+        ElMessage: 'readonly'
       }
     }
   },
@@ -53,7 +54,7 @@ export default defineConfigWithVueTs(
         }
       ],
       'vue/no-setup-props-destructure': ['off'],
-      'no-undef': 'off' // 保持 no-undef 规则为警告级别
+      'no-undef': 'error' // 保持 no-undef 规则为警告级别
     }
   }
 )

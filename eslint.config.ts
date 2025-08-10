@@ -28,7 +28,8 @@ export default defineConfigWithVueTs(
       globals: {
         ...globals.browser, // 导入浏览器全局变量
         ...globals.node, // 同时导入 Node.js 全局变量
-        ElMessage: 'readonly'
+        ElMessage: 'readonly', //不然会报错
+        ElMessageBox: 'readonly'
       }
     }
   },

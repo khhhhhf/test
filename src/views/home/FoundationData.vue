@@ -1,7 +1,5 @@
 <template>
-  <div>基础资料</div>
+  <PageContent title="基本资料"> </PageContent>
 </template>
-<script setup lang="ts">
-// import { ref,reactive } from 'vue';
-</script>
+<script setup lang="ts"></script>
 <style lang="less" scoped></style>

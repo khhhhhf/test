@@ -38,7 +38,11 @@ instance.interceptors.response.use(
     }
     // TODO 3
     //处理业务失败，给错误提示，并且抛出错误
-    ElMessage.error(response.data.message || '身份认证失败')
+    ElMessage({
+      message: response.data.message || '身份认证失败',
+      grouping: true,
+      type: 'error'
+    })
     return Promise.reject(response.data)
   },
   function (error) {

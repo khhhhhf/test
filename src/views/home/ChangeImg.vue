@@ -1,7 +1,5 @@
 <template>
-  <div>修改头像</div>
+  <PageContent title="更换头像"> </PageContent>
 </template>
-<script setup lang="ts">
-// import { ref,reactive } from 'vue';
-</script>
+<script setup lang="ts"></script>
 <style lang="less" scoped></style>

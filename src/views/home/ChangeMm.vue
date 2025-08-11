@@ -1,7 +1,5 @@
 <template>
-  <div>修改密码</div>
+  <PageContent title="修改密码"> </PageContent>
 </template>
-<script setup lang="ts">
-// import { ref, reactive } from 'vue'
-</script>
+<script setup lang="ts"></script>
 <style lang="less" scoped></style>

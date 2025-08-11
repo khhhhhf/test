@@ -6,5 +6,5 @@
   ],
   "compilerOptions": {
     "noImplicitAny": false  //允许any
-  }
+  },
 }

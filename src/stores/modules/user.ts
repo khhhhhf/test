@@ -2,6 +2,12 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { getuserinfo } from '@/api/user'
 
+// 定义 API 响应类型
+interface UserInfo {
+  nickname: string
+  user_pic: string
+  username: string
+}
 export const useUserStore = defineStore(
   'user',
   () => {
@@ -11,8 +17,9 @@ export const useUserStore = defineStore(
     }
     const removetoken = () => {
       token.value = ''
+      user.value = { nickname: '', user_pic: '', username: '' }
     }
-    const user = ref()
+    const user = ref<UserInfo>()
     const getuser = async () => {
       const res = await getuserinfo()
       user.value = res.data
@@ -20,6 +27,8 @@ export const useUserStore = defineStore(
     return { token, settoken, removetoken, getuser, user }
   },
   {
-    persist: true
+    persist: {
+      key: 'user-store' // 自定义存储键名
+    }
   }
 )

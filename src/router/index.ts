@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    { path: '/', redirect: { name: 'home' } },
     {
       name: 'login',
       path: '/login',
@@ -13,7 +14,7 @@ const router = createRouter({
       name: 'home',
       path: '/home',
       component: () => import('@/views/home/index.vue'),
-      redirect: { name: 'article-class' }, // 可设置默认重定向
+      redirect: { name: 'article-control' }, // 可设置默认重定向
       children: [
         {
           name: 'article-class',

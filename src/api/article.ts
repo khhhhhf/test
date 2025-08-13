@@ -24,3 +24,25 @@ export const getarticlelist = (obj: object) =>
   request.get('/my/article/list', {
     params: obj
   })
+
+//获取文章详情
+export const getarticledetail = (id: string) =>
+  request.get('/my/article/info', {
+    params: { id }
+  })
+
+//发布文章
+export const publisharticle = (obj: object) =>
+  request.post('/my/article/add', obj)
+
+//修改文章
+export const changearticle = (obj: object) =>
+  request.put('/my/article/info', obj)
+
+//删除文章
+
+//修改文章
+export const deletearticle = (id: string) =>
+  request.delete('/my/article/info', {
+    params: { id }
+  })

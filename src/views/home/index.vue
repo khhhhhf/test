@@ -73,7 +73,11 @@
         </div>
       </el-header>
       <el-main>
-        <RouterView></RouterView>
+        <router-view v-slot="{ Component }">
+          <transition name="fade-slide">
+            <component :is="Component" :key="$route.fullPath" />
+          </transition>
+        </router-view>
       </el-main>
       <el-footer>大事件 ©2025 khhh</el-footer>
     </el-container>
@@ -83,8 +87,6 @@
 import { useUserStore } from '@/stores'
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElMessageBox, ElMessage } from 'element-plus' // 补充导入
-
 const userstore = useUserStore()
 const { getuser, removetoken } = userstore
 

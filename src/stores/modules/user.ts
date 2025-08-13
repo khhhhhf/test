@@ -24,7 +24,13 @@ export const useUserStore = defineStore(
       const res = await getuserinfo()
       user.value = res.data
     }
-    return { token, settoken, removetoken, getuser, user }
+    // 更新用户头像
+    function updateUserAvatar(avatarUrl: string) {
+      if (user.value) {
+        user.value.user_pic = avatarUrl
+      }
+    }
+    return { token, settoken, removetoken, getuser, user, updateUserAvatar }
   },
   {
     persist: {

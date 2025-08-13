@@ -1,6 +1,8 @@
 <template>
   <PageContent title="文章管理">
-    <template #extra> <el-button type="primary">发布文章</el-button></template>
+    <template #extra>
+      <el-button type="primary" @click="add">发布文章</el-button></template
+    >
     <el-form
       :inline="true"
       ref="ruleFormRef"
@@ -29,7 +31,7 @@
       </el-form-item>
     </el-form>
     <el-table v-loading="loading" :data="tableData" border style="width: 100%">
-      <el-table-column label="文章标题" width="400">
+      <el-table-column label="文章标题" width="300">
         <template #default="scope">
           <div>
             <a href="#" style="text-decoration: none; color: skyblue">{{
@@ -73,6 +75,7 @@
     </el-table>
     <div class="demo-pagination-block">
       <el-pagination
+        label="文章内容"
         v-model:current-page="ruleForm.pagenum"
         v-model:page-size="ruleForm.pagesize"
         :page-sizes="[2, 4, 8, 10]"
@@ -84,10 +87,11 @@
         style="margin-top: 20px; justify-content: flex-end"
       />
     </div>
+    <AddPage ref="addpage" @success="onsuccess"></AddPage>
   </PageContent>
 </template>
 <script setup lang="ts">
-import { getarticlelist, getarticleclass } from '@/api/article'
+import { getarticlelist, getarticleclass, deletearticle } from '@/api/article'
 import { ref } from 'vue'
 import type { msglist, rowtype } from '@/types'
 import { formatdate } from '@/utils/formatdate'
@@ -116,7 +120,6 @@ async function getlist() {
     item.pub_date = formatdate(item.pub_date)
   })
   tableData.value = res.data
-
   total.value = res.total
   loading.value = false
 }
@@ -136,11 +139,13 @@ function resetForm() {
 
 //编辑
 function handleEdit($index: number, row: msglist) {
-  console.log($index, row)
+  addpage.value.open(row)
 }
 //删除
-function handleDelete($index: number, row: msglist) {
-  console.log($index, row)
+async function handleDelete($index: number, row: msglist) {
+  await deletearticle(row.id)
+  ElMessage.success('删除成功')
+  getlist()
 }
 
 //分页逻辑
@@ -154,5 +159,23 @@ const handleCurrentChange = () => {
 }
 
 //发布文章
+const addpage = ref()
+function add() {
+  addpage.value.open()
+}
+
+//更新渲染
+function onsuccess(state: string) {
+  getlist()
+  if (state === 'add') {
+    ElMessage.success('发布成功')
+    //改页码
+    ruleForm.value.pagenum = Math.ceil(
+      (total.value + 1) / ruleForm.value.pagesize
+    )
+  } else {
+    ElMessage.success('编辑成功')
+  }
+}
 </script>
 <style lang="less" scoped></style>

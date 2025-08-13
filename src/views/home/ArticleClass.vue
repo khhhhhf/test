@@ -35,8 +35,8 @@
         <el-empty :image-size="200" />
       </template>
     </el-table>
+    <DialogDemo ref="dig" :fun="getarticle"></DialogDemo>
   </PageContent>
-  <DialogDemo ref="dig" :fun="getarticle"></DialogDemo>
 </template>
 <script setup lang="ts">
 import { deleteearticleclass, getarticleclass } from '@/api/article'
@@ -74,7 +74,7 @@ function handleDelete($index: object, row: rowtype) {
 }
 </script>
 <style lang="less" scoped>
-:deep(.el-table .cell) {
+/* :deep(.el-table .cell) {
   line-height: 55px;
-}
+} */
 </style>
